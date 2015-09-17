@@ -1,0 +1,29 @@
+== KEEP RUNNING 
+
+Aplicación web indicada para gente runner, ya sean principiantes como expertos en el mundo del running. Versión mejorada del proyecto realizado ‘Keep Running’ realizado durante el último mes en Ironhack.
+
+La finalidad es mejorar dicha aplicación arreglando los bugs que tenia la anterior versión, nuevas funcionalidades, un nuevo estilo de diseño de la web y poder hacerla funcional subiéndola a heroku.
+
+== FUNCIONES
+
+- Sistema de usuarios.
+- Listado de rutas: recorrido, elevación del terreno, tiempo atmosférico, etc.
+- Sistema de clasificación y ligas.
+- Información de carreras populares.
+- Sistema de entrenamiento.
+- Estadísticas de usuarios.
+- Interactuar con runners.
+
+Things you may want to cover:
+
+ * Ruby 2.2.1
+ * Ruby on Rails 4.2.3
+ * Database PostgreSQL
+
+== AUTOR
+
+Manuel Ábalos Serrano
+
+== VERSIÓN
+
+v.2.0 (Fecha de inicio: 17 de Septiembre)
