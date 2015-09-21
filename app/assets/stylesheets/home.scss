@@ -1,4 +1,3 @@
-@import url(https://fonts.googleapis.com/css?family=Architects+Daughter);
 @import url(https://fonts.googleapis.com/css?family=Jura);
 
 .navbar{
@@ -38,8 +37,6 @@ header{
 		}
 }
 
-
-
 @media only screen and (max-width: 767px) {
   header{
     background-image: url('/landing page/background-responsive.jpg');
@@ -47,8 +44,10 @@ header{
     margin-top: -74px;
 	width: 100%;
 	text-align: center;	
+	font-family: 'Jura', sans-serif;
+
 		p{
-			font-family: 'Jura', sans-serif;
+			font-size: 20px;
 			margin-top: 29%;
 		}
   }
