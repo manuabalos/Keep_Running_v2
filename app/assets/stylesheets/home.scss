@@ -1,3 +1,65 @@
-// Place all the styles related to the home controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import url(https://fonts.googleapis.com/css?family=Architects+Daughter);
+@import url(https://fonts.googleapis.com/css?family=Jura);
+
+.navbar{
+	border-radius: 0px;
+	font-family: 'Jura', sans-serif;
+	font-weight: bold;
+	font-size: 18px;
+	background-color: rgba(255,255,255,1)
+}
+
+.navbar-right li:hover{
+	background-color: rgba(0,0,0,0.1)
+}
+
+.img-navbar-logo{
+	margin-top: -7px;
+}
+
+header{
+	background: url('/landing page/background.jpg') no-repeat center;
+	background-size: cover;
+	width: 100%;
+	min-height: 640px;
+	margin-top: -20px;
+	text-align: center;
+	font-family: 'Jura', sans-serif;
+		
+		p{
+			font-size: 26px;
+			font-weight: bold;
+			margin-top: 10%;
+		}
+
+		.btn-header-info{
+			font-size: 20px;
+			border-radius: 0px;
+		}
+}
+
+
+
+@media only screen and (max-width: 767px) {
+  header{
+    background-image: url('/landing page/background-responsive.jpg');
+    background-size: cover;
+    margin-top: -74px;
+	width: 100%;
+	text-align: center;	
+		p{
+			font-family: 'Jura', sans-serif;
+			margin-top: 29%;
+		}
+  }
+}
+
+.div-footer{
+	background-color: rgba(0,0,0,0.9);
+	color: white;
+	text-align: center;
+	padding-top: 1%;
+	padding-bottom: 1%;
+}
+
+
