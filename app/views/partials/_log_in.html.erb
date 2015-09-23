@@ -1,11 +1,11 @@
 <div class="modal fade bs-entrar-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
+        <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">Entrar</h4>
-      </div>
-      <div class="modal-body">
+        </div>
+      	<div class="modal-body">
       		<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 				<div class="field">
 					<%= f.label :email %><br />
@@ -33,7 +33,7 @@
 
         	<p class="notice"><%= notice %></p>
 	        <p class="alert"><%= alert %></p>
-      </div>
+        </div>
     </div>
   </div>
 </div>

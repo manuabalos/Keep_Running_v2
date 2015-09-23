@@ -61,4 +61,40 @@ header{
 	padding-bottom: 1%;
 }
 
+.modal-content{
+	width: 365px;
+	display: block; 
+	margin: auto;
+	border-radius: 0px;
+	font-family: 'Jura', sans-serif;
+	font-size: 18px;
+	height: 530px;
+}
+
+.modal-title{
+	font-weight: bold;
+}
+
+#new_user{
+	div.field{
+		margin-bottom: 10px;
+	}
+
+	label{
+		text-align: center;
+	}
+
+	input{
+		width: 335px;
+		border-top: none;
+		border-left: none;
+		border-right: none;
+	}	
+
+	.btn-sign-up{
+		border-radius: 0px;
+		margin-top: 20px;
+	}	
+}
+
 
