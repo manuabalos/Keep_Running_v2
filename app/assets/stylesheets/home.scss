@@ -101,7 +101,9 @@ header{
 @media only screen and (max-width: 767px) {
 	header{
 	    background-image: url('/landing page/background-responsive.jpg');
-	    background-size: cover;
+	        background-repeat:repeat-x;
+    background-attachment:fixed;
+    background-position: left top;
 	    margin-top: -74px;
 		width: 100%;
 		text-align: center;	
