@@ -55,7 +55,7 @@ header{
 
 }
 .modal-registrarse{
-	height: 500px;
+	height: 430px;
 }
 
 .modal-entrar{
@@ -98,12 +98,49 @@ header{
 	}
 }
 
+.register-box{
+	width: 465px;
+	display: block; 
+	margin: auto;
+	border-radius: 0px;
+	font-family: 'Jura', sans-serif;
+	font-size: 18px;
+
+	div.field{
+		margin-bottom: 10px;
+	}
+
+	label{
+		text-align: center;
+	}
+
+	input{
+		width: 435px;
+		border-top: none;
+		border-left: none;
+		border-right: none;
+	}	
+
+	input#user_remember_me{
+		width: 14px;
+	}
+
+	.btn-modal-sign-up, .btn-modal-log-in{
+		border-radius: 0px;
+		margin-top: 20px;
+	}	
+
+	.btn-modal-facebook, .btn-modal-google{
+		border-radius: 0px;
+		margin-top: 5px;
+		width: 435px;
+	}
+}
+
 @media only screen and (max-width: 767px) {
 	header{
 	    background-image: url('/landing page/background-responsive.jpg');
-	        background-repeat:repeat-x;
-    background-attachment:fixed;
-    background-position: left top;
+	    background-position: left top;
 	    margin-top: -74px;
 		width: 100%;
 		text-align: center;	
