@@ -13,3 +13,22 @@
  *= require_tree .
  *= require_self
  */
+@import url(https://fonts.googleapis.com/css?family=Jura);
+
+ body{
+ 	font-family: 'Jura', sans-serif;
+ }
+
+.div-basic-left{
+	min-height: 585px;
+	background-color: rgba(0, 128, 128, 0.1);
+
+	border-right: 2px solid;
+	border-right-color: rgba(250, 255, 255, 1); 
+
+}
+
+.div-basic-right{
+	min-height: 585px;
+	background-color: rgba(0, 128, 128, 0.2);
+}

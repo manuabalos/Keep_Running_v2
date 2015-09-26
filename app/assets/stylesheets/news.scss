@@ -1,3 +1,42 @@
 // Place all the styles related to the news controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.img-center{
+	display: block;
+	margin: 0 auto;
+
+	margin-top: 1%;
+}
+
+.title-header{
+	font-size: 26px;
+	font-weight: bold;
+}
+
+.text-header{
+	margin-left: 12%;
+	margin-right: 12%;
+}
+
+.title-new{
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.text-new{
+	font-size: 12px;
+}
+
+ .div-new:hover{
+ 	background-color: rgba(0, 128, 128, 0.2);
+ 	cursor: pointer;
+ }
+
+.pager li>a{
+	border-radius: 0px; 
+}
+ .pager-li{
+ 	width: 150px;
+ }

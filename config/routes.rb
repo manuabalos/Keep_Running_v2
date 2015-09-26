@@ -4,6 +4,6 @@ Rails.application.routes.draw do
 	
 	root "home#index"
 
-	get '/welcome', to: 'home#welcome', as: 'welcome'
+	resources :news
   
 end
