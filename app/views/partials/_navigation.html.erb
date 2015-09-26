@@ -17,8 +17,6 @@
         <% if !current_user %>
           <li><a href="#" data-toggle="modal" data-target=".bs-registrar-modal-sm">Registrarse</a></li>
           <li><a href="#" data-toggle="modal" data-target=".bs-entrar-modal-sm">Entrar</a></li>
-        <% else %>
-          <li><%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete %></li>
         <% end %>
       </ul>
     </div><!-- /.navbar-collapse -->

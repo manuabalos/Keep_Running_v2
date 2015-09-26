@@ -1,3 +1,36 @@
 <div class="col-md-2 div-basic-left">
+	
+	<div class="row">
+		<div class="col-md-12 div-profile-avatar">
+			<img src="http://lorempixel.com/150/150" alt="..." class="img-circle img-center">
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12 div-profile-name">
+			Manuel Ábalos Serrano
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12 div-profile-stars">
+			<img src="stars/4.png" alt="..." class="img img-stars">
+		</div>
+	</div>
+	<div class="row div-profile-level-experience">
+		<div class="col-md-5">
+			<b>Nivel:</b> 79
+		</div>
+		<div class="col-md-7">
+			<b>Exp:</b> 890/1000
+		</div>
+	</div>
+
+	<div class="row div-profile-panel">
+		<div class="col-md-6 div-profile-panel-button">
+			Ver Perfil
+		</div>
+		<div class="col-md-6 div-profile-panel-button">
+			<%= link_to "Salir", destroy_user_session_path, method: :delete, class: "btn-salir" %>
+		</div>
+	</div>
 
 </div>

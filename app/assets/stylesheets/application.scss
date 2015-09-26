@@ -13,25 +13,75 @@
  *= require_tree .
  *= require_self
  */
+
 @import url(https://fonts.googleapis.com/css?family=Jura);
 
- body{
- 	font-family: 'Jura', sans-serif;
- }
+body{
+	font-family: 'Jura', sans-serif;
+}
 
 .div-basic-left{
 	min-height: 585px;
-
 	border-right: 2px solid;
 	border-right-color: rgba(250, 255, 255, 1); 
-
 }
 
 .div-basic-right{
 	min-height: 585px;
-	background-color: rgba(0, 128, 128, 0.2);
+	background-color: rgba(0, 128, 128, 0.1);
 }
 
 .background-base{
 	background-color: rgba(0, 128, 128, 0.1);
+}
+
+.div-profile-avatar{
+	margin-top: 5px;
+	margin-bottom: 5px;
+	padding-bottom: 5px;
+}
+
+.div-profile-name{
+	font-weight: 700;
+	text-align: center;
+	font-size: 16px;
+	font-weight: bold;
+}
+.div-profile-stars{
+	height: 30px;
+}
+
+.img-stars{
+	height: 32px;
+	display: block;
+	margin: auto;
+}
+
+.div-profile-level-experience{
+	text-align: center;
+	font-size: 12px;
+}
+
+.div-profile-panel{
+	margin-top: 5px;
+
+	.div-profile-panel-button{
+		text-align: center;
+		font-size: 12px;
+		border: 1px solid;
+		border-color: rgba(0,0,0,0.5); 
+		margin-left: 3px;
+		margin-right: 3px;
+		width: 98px;
+	}
+
+	.div-profile-panel-button:hover{
+		cursor: pointer;
+		background: rgba(0,0,0,0.1); 
+	}
+
+	.btn-salir{
+		text-decoration: none;
+		color: black;
+	}
 }
