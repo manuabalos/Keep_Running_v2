@@ -19,6 +19,22 @@
 body{
 	font-family: 'Jura', sans-serif;
 }
+.menu-superior{
+	margin-left: 5px;
+
+
+	li:hover{
+		background-color: rgba(0, 128, 128, 0.1);
+		border-bottom: 2px solid;
+		border-bottom-color: rgba(0, 0, 0, 0.5);
+	}
+
+	.menu-icon{
+		margin-left: 5px;
+		margin-right: 5px;
+	}
+}
+
 
 .div-basic-left{
 	min-height: 585px;
@@ -70,18 +86,12 @@ body{
 		font-size: 12px;
 		border: 1px solid;
 		border-color: rgba(0,0,0,0.5); 
-		margin-left: 3px;
-		margin-right: 3px;
-		width: 98px;
+		
+		/*width: 98px;*/
 	}
 
 	.div-profile-panel-button:hover{
 		cursor: pointer;
 		background: rgba(0,0,0,0.1); 
-	}
-
-	.btn-salir{
-		text-decoration: none;
-		color: black;
 	}
 }
