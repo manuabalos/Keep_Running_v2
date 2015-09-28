@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20150927162316) do
     t.string   "name"
     t.text     "description"
     t.string   "location"
+    t.string   "difficulty"
     t.float    "distance"
     t.float    "latitude"
     t.float    "longitude"
