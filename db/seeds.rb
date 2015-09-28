@@ -11,8 +11,8 @@ Route.create(   name: "Parque del Retiro",
 			  	location: "Madrid", 
 			  	difficulty: "Intermedia", 
 			  	distance: 5,
-			  	latitude: 40.416100, 
-			  	longitude: -3.684284)
+			  	latitude: 40.415788, 
+			  	longitude: -3.682461)
 
 Route.create( 	name: "Parque del Canal", 
 				description: "Recorrido por la zona exterior del parque del Canal.",

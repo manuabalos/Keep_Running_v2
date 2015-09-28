@@ -15,11 +15,21 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <% if current_user %>
         <ul class="nav navbar-nav menu-superior">
-            <li class="text-center"><a href="<%= news_index_path %>"><i class="menu-icon fa fa-lg fa-newspaper-o"></i>Noticias</a></li>
-            <li class="text-center"><a href="#"><i class="menu-icon fa fa-lg fa-user"></i>Perfil</a></li>
-            <li class="text-center"><a href="<%= routes_path %>"><i class="menu-icon fa fa-lg fa-street-view"></i>Rutas</a></li>
-            <li class="text-center"><a href="#"><i class="menu-icon fa fa-lg fa-heartbeat"></i>Entrenamiento</a></li>
-            <li class="text-center"><a href="#"><i class="menu-icon fa fa-lg fa-users"></i>Clasificación</a></li>
+            <li class="text-center">
+              <a href="<%= news_index_path %>"><i class="menu-icon fa fa-lg fa-newspaper-o"></i>Noticias</a>
+            </li>
+            <li class="text-center">
+              <a href="#"><i class="menu-icon fa fa-lg fa-user"></i>Perfil</a>
+            </li>
+            <li class="text-center">
+              <a href="<%= routes_path %>" id="btn-menu-rutas"><i class="menu-icon fa fa-lg fa-street-view"></i>Rutas</a>
+            </li>
+            <li class="text-center">
+              <a href="#"><i class="menu-icon fa fa-lg fa-heartbeat"></i>Entrenamiento</a>
+            </li>
+            <li class="text-center">
+              <a href="#"><i class="menu-icon fa fa-lg fa-users"></i>Clasificación</a>
+            </li>
             
         </ul>
         <ul class="nav navbar-nav navbar-right menu-superior">

@@ -22,6 +22,11 @@ body{
 .menu-superior{
 	margin-left: 5px;
 
+	li{
+		border-bottom: 2px solid;
+		border-bottom-color: transparent;
+	}
+	
 	li:hover{
 		background-color: rgba(0, 128, 128, 0.1);
 		border-bottom: 2px solid;
