@@ -1,1 +1,64 @@
-index.html.erb
+<div class="container-fluid">
+	<div class="row background-base">
+		<%= render "partials/div_left" %>
+		<div class="col-md-10 div-basic-right">
+			<div class="row">
+				<center><h1> Testing Mapbox </h1></center>
+				<div class="col-md-2">
+
+					<div class="row">
+						<a href='#' id='geolocate' class='btn btn-default btn-mapbox-default'>Mi posición</a>
+					</div>
+					<div class="row">
+						<a href='#' id='geolocate' class='btn btn-default btn-mapbox-default'>Mostrar en tabla</a>
+					</div>
+					<div class="row">
+						<a href='#' id='geolocate' class='btn btn-default btn-mapbox-default'>Todos las rutas</a>
+					</div>
+
+
+					<div class="row">
+						<p class="text-pordificultad">Filtrar por dificultad:</p>
+					</div>
+					<div class="row">
+						<a href='#' id='geolocate' class='btn btn-default btn-mapbox-default'>Principiante</a>
+					</div>
+					<div class="row">
+						<a href='#' id='geolocate' class='btn btn-default btn-mapbox-default'>Intermedia</a>
+					</div>
+					<div class="row">
+						<a href='#' id='geolocate' class='btn btn-default btn-mapbox-default'>Dificil</a>
+					</div>	
+
+					<div class="row">
+						<p class="text-pordificultad">Filtrar por cercanía:</p>
+					</div>
+					<div class="row">
+						<a href='#' id='geolocate' class='btn btn-default btn-mapbox-default'>< 5km</a>
+					</div>
+					<div class="row">
+						<a href='#' id='geolocate' class='btn btn-default btn-mapbox-default'>< 10km</a>
+					</div>
+					<div class="row">
+						<a href='#' id='geolocate' class='btn btn-default btn-mapbox-default'>< 15km</a>
+					</div>
+					<div class="row">
+						<a href='#' id='geolocate' class='btn btn-default btn-mapbox-default'>< 20km</a>
+					</div>	
+					<div class="row">
+						<a href='#' id='geolocate' class='btn btn-default btn-mapbox-default'>< 25km</a>
+					</div>	
+
+				</div>
+				<div class="col-md-10">
+					<div id='map'></div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+
+
+
