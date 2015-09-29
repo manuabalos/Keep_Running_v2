@@ -1,7 +1,9 @@
 $(document).ready(function(){
 
    	this_url = window.location.href;
+
    	if(this_url == "http://localhost:3000/routes"){
+
    		$.ajax({
 	    	type: 'GET',
 	        dataType: 'json',
@@ -11,16 +13,15 @@ $(document).ready(function(){
 		});
 
 		L.mapbox.accessToken = 'pk.eyJ1IjoibWFudWFiYWxvcyIsImEiOiJjaWYzdzcyZ3cwMGwwdGZseWVma2IxeXM5In0.oiCfQ9C3Yf7IQJecd3auZg';
-		var geolocate = document.getElementById('geolocate');
-		var map = L.mapbox.map('map', 'mapbox.streets').setView([40.087802, -3.873294], 6);
-
-		var myLayer = L.mapbox.featureLayer().addTo(map);
+			var map = L.mapbox.map('map', 'mapbox.streets').setView([40.087802, -3.873294], 6);
+			var myLayer = L.mapbox.featureLayer().addTo(map);
 
 		// This uses the HTML5 geolocation API, which is available on
 		// most mobile browsers and modern browsers, but not in Internet Explorer
 		//
 		// See this chart of compatibility for details:
 		// http://caniuse.com/#feat=geolocation
+		var geolocate = document.getElementById('geolocate');
 		if (!navigator.geolocation) {
 		    geolocate.innerHTML = 'Geolocation is not available';
 		} else {
@@ -43,7 +44,7 @@ $(document).ready(function(){
 		            coordinates: [e.latlng.lng, e.latlng.lat]
 		        },
 		        properties: {
-		            'title': 'Here I am!',
+		            'title': '¡Aqui estas tú!',
 		            'marker-color': '#ff8888',
 		            'marker-symbol': 'star'
 		        }
@@ -64,13 +65,7 @@ $(document).ready(function(){
 
 		// Añadimos los marcadores donde se encuentran las rutas
 		function addMarkers(data){
-			/*console.log("Entro");
-			console.log(data.route[0].latitude);
-			for(i=0;i<data.route.length;i++){
-				var marker = new L.Marker(new L.LatLng(data.route[i].latitude, data.route[i].longitude));
-				map.addLayer(marker);
-			}*/
-			console.log(data);
+
 			for(i=0;i<data.route.length;i++){
 			L.mapbox.featureLayer({
 				
@@ -102,10 +97,4 @@ $(document).ready(function(){
 							
 		}
    	}
-			
-
-   		
-
-   		
-
 });
