@@ -14,6 +14,12 @@ Route.create(   name: "Parque del Retiro",
 			  	latitude: 40.415788, 
 			  	longitude: -3.682461)
 
+	Waypoint.create( route_id: 1, latitude: 40.416015, longitude: -3.679990)
+	Waypoint.create( route_id: 1, latitude: 40.410056, longitude: -3.680038)
+	Waypoint.create( route_id: 1, latitude: 40.409868, longitude: -3.687838)
+	Waypoint.create( route_id: 1, latitude: 40.419230, longitude: -3.688471)
+	Waypoint.create( route_id: 1, latitude: 40.421059, longitude: -3.682410)
+
 Route.create( 	name: "Parque del Canal", 
 				description: "Si quieres empezar a correr y no quieres marcharte muy lejos, este es tu mejor campo de entrenamiento. La vuelta completa a las instalaciones del Canal de Isabel II en Chamberí es un paseo agradable que cualquier persona puede cumplir a trote suave.",
 				location: "Madrid", 

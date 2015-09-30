@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
    	this_url = window.location.href;
-
+   	L.mapbox.accessToken = 'pk.eyJ1IjoibWFudWFiYWxvcyIsImEiOiJjaWYzdzcyZ3cwMGwwdGZseWVma2IxeXM5In0.oiCfQ9C3Yf7IQJecd3auZg';
    	if(this_url == "http://localhost:3000/routes"){
 
    		$.ajax({
@@ -12,7 +12,7 @@ $(document).ready(function(){
 	        error: function(data) { console.log("Error ",data); }
 		});
 
-		L.mapbox.accessToken = 'pk.eyJ1IjoibWFudWFiYWxvcyIsImEiOiJjaWYzdzcyZ3cwMGwwdGZseWVma2IxeXM5In0.oiCfQ9C3Yf7IQJecd3auZg';
+		
 			var map = L.mapbox.map('map', 'mapbox.streets').setView([40.087802, -3.873294], 6);
 			var myLayer = L.mapbox.featureLayer().addTo(map);
 
@@ -97,4 +97,5 @@ $(document).ready(function(){
 							
 		}
    	}
+
 });

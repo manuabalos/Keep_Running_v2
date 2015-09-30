@@ -1,1 +1,26 @@
-show.html.erb
+<div class="container-fluid">
+	<div class="row background-base">
+		<%= render "partials/div_left" %>
+		<div class="col-md-10 div-basic-right">
+			<center><h1> Aqui irá el nombre de la ruta </h1></center>
+				<div class="col-md-2">
+
+					<div class="row">
+						<a href='#' class='btn btn-default btn-mapbox-default'>Mostrar recorrido</a>
+					</div>
+					<div class="row">
+						<a href='#' class='btn btn-default btn-mapbox-default'>Elevación</a>
+					</div>
+					<div class="row">
+						<a href='#' class='btn btn-default btn-mapbox-default'>Tiempo</a>
+					</div>
+
+				</div>
+
+				<div class="col-md-10">
+					<div id='map'></div>
+				</div>
+
+		</div>
+	</div>
+</div>
