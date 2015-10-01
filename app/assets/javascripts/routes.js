@@ -2,6 +2,7 @@ $(document).ready(function(){
 
    	this_url = window.location.href;
    	L.mapbox.accessToken = 'pk.eyJ1IjoibWFudWFiYWxvcyIsImEiOiJjaWYzdzcyZ3cwMGwwdGZseWVma2IxeXM5In0.oiCfQ9C3Yf7IQJecd3auZg';
+
    	if(this_url == "http://localhost:3000/routes"){
 
    		$.ajax({
@@ -83,7 +84,7 @@ $(document).ready(function(){
 				    },
 				    properties: {
 				        title: data.route[i].name,
-				        description: data.route[i].description+"<ul><li><b>Dificultad:</b> "+data.route[i].difficulty+"</li><li><b>Distancia total:</b> "+data.route[i].distance+" km.</li></ul><a href='"+this_url+"/"+data.route[i].id+"' class='btn btn-default btn-mapbox-default'>Ver ruta</a>",
+				        description: data.route[i].description+"<ul><li><b>Dificultad:</b> "+data.route[i].difficulty+"</li><li><b>Distancia total:</b> "+data.route[i].distance+" km.</li></ul><a href='"+this_url+"/"+data.route[i].id+"' id='btn-ver-ruta' class='btn btn-default btn-mapbox-default'>Ver ruta</a>",
 				        url: this_url+data.route[i].id,
 				        // one can customize markers by adding simplestyle properties
 				        // https://www.mapbox.com/guides/an-open-platform/#simplestyle
@@ -93,9 +94,44 @@ $(document).ready(function(){
 				    }
 
 			}).addTo(map);
-			}
-							
+			}					
 		}
    	}
+
+	$.ajax({
+        type: 'GET',
+        dataType: 'json',
+        url: this_url,
+        success: function(data) { takingRoute(data); }
+   	});    	
+
+
+   function takingRoute(data){
+   	console.log(data);
+   		
+   		var map = L.mapbox.map('map', 'mapbox.streets').setView([data[0].geometry.coordinates[0], data[0].geometry.coordinates[1]], 15).featureLayer.setGeoJSON(data);;
+// move the attribution control out of the way
+map.attributionControl.setPosition('bottomleft');
+
+// create the initial directions object, from which the layer
+// and inputs will pull data.
+var directions = L.mapbox.directions({
+    profile: 'mapbox.walking'
+});
+		// Add a new line to the map with no points.
+		/*var polyline = L.polyline([]).addTo(map);
+		polyline.addLatLng(
+       			L.latLng(data.route.latitude, data.route.longitude)
+       	);
+		for(i=0;i<data.waypoints.length;i++){
+			polyline.addLatLng(
+       			L.latLng(data.waypoints[i].latitude, data.waypoints[i].longitude)
+       		);
+
+		    
+
+		}*/
+		
+   }
 
 });
