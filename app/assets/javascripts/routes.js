@@ -14,7 +14,10 @@ $(document).ready(function(){
 		});
 
 		
-			var map = L.mapbox.map('map', 'mapbox.streets').setView([40.087802, -3.873294], 6);
+			var map = L.mapbox.map('map', 'mapbox.streets').setView([40.087802, -3.873294], 6)
+								.addControl(L.mapbox.geocoderControl('mapbox.places', {
+							        autocomplete: true
+							    }));
 			var myLayer = L.mapbox.featureLayer().addTo(map);
 
 		// This uses the HTML5 geolocation API, which is available on
@@ -109,15 +112,19 @@ $(document).ready(function(){
    function takingRoute(data){
    	console.log(data);
    		
-   		var map = L.mapbox.map('map', 'mapbox.streets').setView([data[0].geometry.coordinates[0], data[0].geometry.coordinates[1]], 15).featureLayer.setGeoJSON(data);;
-// move the attribution control out of the way
-map.attributionControl.setPosition('bottomleft');
+   		var map = L.mapbox.map('map', 'mapbox.streets').setView([data[0].geometry.coordinates[0], data[0].geometry.coordinates[1]], 15).featureLayer.setGeoJSON(data);
+		
 
-// create the initial directions object, from which the layer
-// and inputs will pull data.
-var directions = L.mapbox.directions({
-    profile: 'mapbox.walking'
-});
+		// create the initial directions object, from which the layer
+		// and inputs will pull data.
+		var directions = L.mapbox.directions({
+		    profile: 'mapbox.walking',
+		    longitude: data[0].geometry.coordinates[0],
+		    latitude: data[0].geometry.coordinates[1]
+		});
+		console.log(directions);
+		var directionsLayer = L.mapbox.directions.layer(directions)
+		    .addTo(map);
 		// Add a new line to the map with no points.
 		/*var polyline = L.polyline([]).addTo(map);
 		polyline.addLatLng(
