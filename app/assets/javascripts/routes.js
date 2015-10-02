@@ -18,6 +18,7 @@ $(document).ready(function(){
 								.addControl(L.mapbox.geocoderControl('mapbox.places', {
 							        autocomplete: true
 							    }));
+			L.control.fullscreen().addTo(map);					
 			var myLayer = L.mapbox.featureLayer().addTo(map);
 
 		// This uses the HTML5 geolocation API, which is available on
