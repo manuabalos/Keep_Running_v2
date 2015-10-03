@@ -103,6 +103,11 @@ $(document).ready(function(){
 		}
    	}
 
+// Testeando MapBox
+// Objetivo: Mostrar la ruta exacta de cada recorrido
+// Problema : Mapbox aun no tiene implementada la funcionalidad de dibujar una ruta usando distintos
+// puntos de coordenadas.
+
 	$.ajax({
         type: 'GET',
         dataType: 'json',
@@ -115,7 +120,7 @@ $(document).ready(function(){
    	console.log(data);
    		
    		var map = L.mapbox.map('map', 'mapbox.streets').setView([data[0].geometry.coordinates[0], data[0].geometry.coordinates[1]], 15).featureLayer.setGeoJSON(data);
-		
+		var map2 = L.mapbox.map('map', 'mapbox.streets').setView([data[0].geometry.coordinates[0], data[0].geometry.coordinates[1]], 15).featureLayer.setGeoJSON(data);
 
 		// create the initial directions object, from which the layer
 		// and inputs will pull data.
@@ -128,7 +133,7 @@ $(document).ready(function(){
 		var directionsLayer = L.mapbox.directions.layer(directions)
 		    .addTo(map);
 		// Add a new line to the map with no points.
-		/*var polyline = L.polyline([]).addTo(map);
+		var polyline = L.polyline([]).addTo(map);
 		polyline.addLatLng(
        			L.latLng(data.route.latitude, data.route.longitude)
        	);
@@ -136,10 +141,7 @@ $(document).ready(function(){
 			polyline.addLatLng(
        			L.latLng(data.waypoints[i].latitude, data.waypoints[i].longitude)
        		);
-
-		    
-
-		}*/
+		}
 		
    }
 
