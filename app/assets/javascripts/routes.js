@@ -71,8 +71,21 @@ $(document).ready(function(){
 
 		// Añadimos los marcadores donde se encuentran las rutas
 		function addMarkers(data){
-
+			console.log(data);
 			for(i=0;i<data.route.length;i++){
+
+				switch(data.route[i].difficulty) {
+				    case "Principiante":
+				        colorIconDifficulty = "#00ff00";
+				        break;
+				    case "Intermedia":
+				        colorIconDifficulty = "#009933";
+				        break;
+				    case "Dificil":
+				    	colorIconDifficulty = "#cc0000";
+				    	break;
+				}
+
 			L.mapbox.featureLayer({
 				
 				    // this feature is in the GeoJSON format: see geojson.org
@@ -94,7 +107,7 @@ $(document).ready(function(){
 				        // one can customize markers by adding simplestyle properties
 				        // https://www.mapbox.com/guides/an-open-platform/#simplestyle
 				        'marker-size': 'large',
-				        'marker-color': '#BE9A6B',
+				        'marker-color': colorIconDifficulty,
 				        'marker-symbol': 'pitch'
 				    }
 
@@ -108,7 +121,7 @@ $(document).ready(function(){
 // Problema : Mapbox aun no tiene implementada la funcionalidad de dibujar una ruta usando distintos
 // puntos de coordenadas.
 
-	$.ajax({
+/*	$.ajax({
         type: 'GET',
         dataType: 'json',
         url: this_url,
@@ -120,8 +133,7 @@ $(document).ready(function(){
    	console.log(data);
    		
    		var map = L.mapbox.map('map', 'mapbox.streets').setView([data[0].geometry.coordinates[0], data[0].geometry.coordinates[1]], 15).featureLayer.setGeoJSON(data);
-		var map2 = L.mapbox.map('map', 'mapbox.streets').setView([data[0].geometry.coordinates[0], data[0].geometry.coordinates[1]], 15).featureLayer.setGeoJSON(data);
-
+		
 		// create the initial directions object, from which the layer
 		// and inputs will pull data.
 		var directions = L.mapbox.directions({
@@ -143,6 +155,6 @@ $(document).ready(function(){
        		);
 		}
 		
-   }
+   }*/
 
 });
