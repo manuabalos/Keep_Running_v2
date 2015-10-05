@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 	resources :routes do
 		resources :waypoints
 	end
+
+	get '/routes_filter', to: 'routes#filterDifficulty', as: 'filter_difficulty'
 	
   
 end

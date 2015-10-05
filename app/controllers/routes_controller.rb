@@ -36,5 +36,10 @@ class RoutesController < ApplicationController
    		end
 =end
 	end
+
+	def filterDifficulty 
+		@routes = Route.filterDifficulty(params[:difficulty])
+	     render json: {:route => @routes }
+	end
 	
 end

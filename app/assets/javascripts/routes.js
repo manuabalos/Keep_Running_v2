@@ -3,7 +3,7 @@ $(document).ready(function(){
    	this_url = window.location.href;
    	L.mapbox.accessToken = 'pk.eyJ1IjoibWFudWFiYWxvcyIsImEiOiJjaWYzdzcyZ3cwMGwwdGZseWVma2IxeXM5In0.oiCfQ9C3Yf7IQJecd3auZg';
 
-   	if(this_url == "http://localhost:3000/routes"){
+   	if(this_url == "http://localhost:3000/routes" || this_url == "http://localhost:3000/routes_filter.Route?difficulty=Principiante"){
 
    		$.ajax({
 	    	type: 'GET',
@@ -82,7 +82,7 @@ $(document).ready(function(){
 				        colorIconDifficulty = "#009933";
 				        break;
 				    case "Dificil":
-				    	colorIconDifficulty = "#cc0000";
+				    	colorIconDifficulty = "#ff0000";
 				    	break;
 				}
 
