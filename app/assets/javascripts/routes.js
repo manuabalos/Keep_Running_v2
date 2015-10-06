@@ -3,7 +3,7 @@ $(document).ready(function(){
    	this_url = window.location.href;
    	L.mapbox.accessToken = 'pk.eyJ1IjoibWFudWFiYWxvcyIsImEiOiJjaWYzdzcyZ3cwMGwwdGZseWVma2IxeXM5In0.oiCfQ9C3Yf7IQJecd3auZg';
 
-   	if(this_url == "http://localhost:3000/routes" || this_url == "http://localhost:3000/routes_filter.Route?difficulty=Principiante"){
+   	if(this_url == "http://localhost:3000/routes"){
 
    		$.ajax({
 	    	type: 'GET',
@@ -121,7 +121,7 @@ $(document).ready(function(){
 // Problema : Mapbox aun no tiene implementada la funcionalidad de dibujar una ruta usando distintos
 // puntos de coordenadas.
 
-/*	$.ajax({
+	$.ajax({
         type: 'GET',
         dataType: 'json',
         url: this_url,
@@ -131,7 +131,14 @@ $(document).ready(function(){
 
    function takingRoute(data){
    	console.log(data);
-   		
+
+   		var map = L.mapbox.map('map', 'mapbox.streets').setView([data[0].geometry.coordinates[0], data[0].geometry.coordinates[1]], 15)
+   			var directions = L.mapbox.directions({
+		    	profile: 'mapbox.walking',
+			});
+
+
+   		/*
    		var map = L.mapbox.map('map', 'mapbox.streets').setView([data[0].geometry.coordinates[0], data[0].geometry.coordinates[1]], 15).featureLayer.setGeoJSON(data);
 		
 		// create the initial directions object, from which the layer
@@ -154,7 +161,7 @@ $(document).ready(function(){
        			L.latLng(data.waypoints[i].latitude, data.waypoints[i].longitude)
        		);
 		}
-		
-   }*/
+	*/	
+   }
 
 });
