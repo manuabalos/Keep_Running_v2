@@ -20,7 +20,7 @@ class RoutesController < ApplicationController
 		    type: 'Feature',
 		    geometry: {
 		      type: 'Point',
-		      coordinates: [waypoint.latitude, waypoint.longitude]
+		      coordinates: [waypoint.longitude, waypoint.latitude]
 		    }
 		  }
 		end

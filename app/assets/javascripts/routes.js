@@ -3,7 +3,7 @@ $(document).ready(function(){
    	this_url = window.location.href;
    	L.mapbox.accessToken = 'pk.eyJ1IjoibWFudWFiYWxvcyIsImEiOiJjaWYzdzcyZ3cwMGwwdGZseWVma2IxeXM5In0.oiCfQ9C3Yf7IQJecd3auZg';
 
-   	if(this_url == "http://localhost:3000/routes"){
+   	$(".routes.index").ready(function() {
 
    		$.ajax({
 	    	type: 'GET',
@@ -14,13 +14,13 @@ $(document).ready(function(){
 		});
 
 		
-			var map = L.mapbox.map('map', 'mapbox.streets').setView([40.087802, -3.873294], 6)
-								.addControl(L.mapbox.geocoderControl('mapbox.places', {
-							        autocomplete: true
-							    }));
-			L.control.fullscreen().addTo(map);	// Opción de pantalla completa
-			L.control.locate().addTo(map); // Localizador de posición				
-			var myLayer = L.mapbox.featureLayer().addTo(map);
+		var map = L.mapbox.map('map', 'mapbox.streets').setView([40.087802, -3.873294], 6)
+							.addControl(L.mapbox.geocoderControl('mapbox.places', {
+						        autocomplete: true
+						    }));
+		L.control.fullscreen().addTo(map);	// Opción de pantalla completa
+		L.control.locate().addTo(map); // Localizador de posición				
+		var myLayer = L.mapbox.featureLayer().addTo(map);
 
 		// This uses the HTML5 geolocation API, which is available on
 		// most mobile browsers and modern browsers, but not in Internet Explorer
@@ -71,7 +71,7 @@ $(document).ready(function(){
 
 		// Añadimos los marcadores donde se encuentran las rutas
 		function addMarkers(data){
-			console.log(data);
+			
 			for(i=0;i<data.route.length;i++){
 
 				switch(data.route[i].difficulty) {
@@ -114,58 +114,61 @@ $(document).ready(function(){
 			}).addTo(map);
 			}					
 		}
-   	}
+   	});
 
 // Testeando MapBox
 // Objetivo: Mostrar la ruta exacta de cada recorrido
 // Problema : Mapbox aun no tiene implementada la funcionalidad de dibujar una ruta usando distintos
 // puntos de coordenadas.
+	$(".routes.show").ready(function() {
+  		
+		$.ajax({
+	        type: 'GET',
+	        dataType: 'json',
+	        url: this_url,
+	        success: function(data) { takingRoute(data); }
+	   	});    	
 
-	$.ajax({
-        type: 'GET',
-        dataType: 'json',
-        url: this_url,
-        success: function(data) { takingRoute(data); }
-   	});    	
 
+	   function takingRoute(data){
+	   	console.log(data);
 
-   function takingRoute(data){
-   	console.log(data);
-
-   		var map = L.mapbox.map('map', 'mapbox.streets').setView([data[0].geometry.coordinates[0], data[0].geometry.coordinates[1]], 15)
-   			var directions = L.mapbox.directions({
+	   		var map = L.mapbox.map('map', 'mapbox.streets').setView([data[0].geometry.coordinates[1], data[0].geometry.coordinates[0]], 15).featureLayer.setGeoJSON(data);
+   			/*var directions = L.mapbox.directions({
 		    	profile: 'mapbox.walking',
 			});
+	 		L.mapbox.directions.layer(directions).addTo(map);*/
 
-
-   		/*
-   		var map = L.mapbox.map('map', 'mapbox.streets').setView([data[0].geometry.coordinates[0], data[0].geometry.coordinates[1]], 15).featureLayer.setGeoJSON(data);
-		
-		// create the initial directions object, from which the layer
-		// and inputs will pull data.
-		var directions = L.mapbox.directions({
-		    profile: 'mapbox.walking',
-		    longitude: data[0].geometry.coordinates[0],
-		    latitude: data[0].geometry.coordinates[1]
-		});
-		console.log(directions);
-		var directionsLayer = L.mapbox.directions.layer(directions)
-		    .addTo(map);
-		// Add a new line to the map with no points.
-		var polyline = L.polyline([]).addTo(map);
-		polyline.addLatLng(
-       			L.latLng(data.route.latitude, data.route.longitude)
-       	);
-		for(i=0;i<data.waypoints.length;i++){
+	 		
+	 		//L.mapbox.directions.getOrigin();
+	   		/*
+	   		var map = L.mapbox.map('map', 'mapbox.streets').setView([data[0].geometry.coordinates[0], data[0].geometry.coordinates[1]], 15).featureLayer.setGeoJSON(data);
+			
+			// create the initial directions object, from which the layer
+			// and inputs will pull data.
+			var directions = L.mapbox.directions({
+			    profile: 'mapbox.walking',
+			    longitude: data[0].geometry.coordinates[0],
+			    latitude: data[0].geometry.coordinates[1]
+			});
+			console.log(directions);
+			var directionsLayer = L.mapbox.directions.layer(directions)
+			    .addTo(map);
+			// Add a new line to the map with no points.
+			var polyline = L.polyline([]).addTo(map);
 			polyline.addLatLng(
-       			L.latLng(data.waypoints[i].latitude, data.waypoints[i].longitude)
-       		);
-		}
-	*/	
-   }
+	       			L.latLng(data.route.latitude, data.route.longitude)
+	       	);
+			for(i=0;i<data.waypoints.length;i++){
+				polyline.addLatLng(
+	       			L.latLng(data.waypoints[i].latitude, data.waypoints[i].longitude)
+	       		);
+			}
+		*/	
+	   }
+
+	});
+	
 
 });
 
-$(".routes.show").ready(function() {
-  alert("Uououououououoooooo.");
-});
