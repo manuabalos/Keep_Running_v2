@@ -165,3 +165,7 @@ $(document).ready(function(){
    }
 
 });
+
+$(".routes.show").ready(function() {
+  alert("Uououououououoooooo.");
+});
