@@ -137,60 +137,21 @@ $(document).ready(function(){
    			var directions = L.mapbox.directions({
 		    	profile: 'mapbox.walking',
 			});
-
-   			directions.setOrigin(L.latLng(data.waypoints[0].latitude,data.waypoints[0].longitude));
-			directions.setDestination(L.latLng(data.waypoints[6].latitude,data.waypoints[6].longitude));
+   			totalWaypoints = parseInt(data.waypoints.length);
+   			console.log(totalWaypoints);
+   			directions.setOrigin(L.latLng(data.waypoints[0].latitude, data.waypoints[0].longitude));
+			directions.setDestination(L.latLng(data.waypoints[7].latitude, data.waypoints[7].longitude));
 
 			for(i=0;i<data.waypoints.length;i++){
 				directions.addWaypoint(i, L.latLng(data.waypoints[i].latitude,data.waypoints[i].longitude));
 			}
 			
-
 			directions.query();
 
 			var directionsLayer = L.mapbox.directions.layer(directions).addTo(map);
-
 		    var directionsRoutesControl = L.mapbox.directions.routesControl('routes', directions).addTo(map);
-
 		    var directionsErrorsControl = L.mapbox.directions.errorsControl('errors', directions).addTo(map);
 
-
-
-
-
-
-
-
-
-
-	 		/*L.mapbox.directions.layer(directions).addTo(map);*/
-
-	 		
-	 		//L.mapbox.directions.getOrigin();
-	   		/*
-	   		var map = L.mapbox.map('map', 'mapbox.streets').setView([data[0].geometry.coordinates[0], data[0].geometry.coordinates[1]], 15).featureLayer.setGeoJSON(data);
-			
-			// create the initial directions object, from which the layer
-			// and inputs will pull data.
-			var directions = L.mapbox.directions({
-			    profile: 'mapbox.walking',
-			    longitude: data[0].geometry.coordinates[0],
-			    latitude: data[0].geometry.coordinates[1]
-			});
-			console.log(directions);
-			var directionsLayer = L.mapbox.directions.layer(directions)
-			    .addTo(map);
-			// Add a new line to the map with no points.
-			var polyline = L.polyline([]).addTo(map);
-			polyline.addLatLng(
-	       			L.latLng(data.route.latitude, data.route.longitude)
-	       	);
-			for(i=0;i<data.waypoints.length;i++){
-				polyline.addLatLng(
-	       			L.latLng(data.waypoints[i].latitude, data.waypoints[i].longitude)
-	       		);
-			}
-		*/	
 	   }
 
 	});
