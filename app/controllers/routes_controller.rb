@@ -13,8 +13,8 @@ class RoutesController < ApplicationController
 		@route = Route.find(params[:id])
 		@waypoints = @route.waypoints
 
-		@geojson = Array.new
-
+=begin		@geojson = Array.new
+		
 		@waypoints.each do |waypoint|
 		  @geojson << {
 		    type: 'Feature',
@@ -29,17 +29,17 @@ class RoutesController < ApplicationController
 		  format.html
 		  format.json { render json: @geojson }  # respond with the created JSON object
 		end
-
-=begin	respond_to do |format|
+=end
+		respond_to do |format|
       		format.html # show.html.erb
       		format.json { render json: {:route => @route, :waypoints => @waypoints} }
    		end
-=end
+
 	end
 
-	#def filterDifficulty 
-	#	@routes = Route.filterDifficulty(params[:difficulty])
-	 #   render json: {:route => @routes }
-	#end
-	
+=begin	def filterDifficulty 
+		@routes = Route.filterDifficulty(params[:difficulty])
+	    render json: {:route => @routes }
+	end
+=end	
 end

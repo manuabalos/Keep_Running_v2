@@ -133,11 +133,37 @@ $(document).ready(function(){
 	   function takingRoute(data){
 	   	console.log(data);
 
-	   		var map = L.mapbox.map('map', 'mapbox.streets').setView([data[0].geometry.coordinates[1], data[0].geometry.coordinates[0]], 15).featureLayer.setGeoJSON(data);
-   			/*var directions = L.mapbox.directions({
+	   		var map = L.mapbox.map('map', 'mapbox.streets').setView([data.route.latitude, data.route.longitude], 15);
+   			var directions = L.mapbox.directions({
 		    	profile: 'mapbox.walking',
 			});
-	 		L.mapbox.directions.layer(directions).addTo(map);*/
+
+   			directions.setOrigin(L.latLng(data.waypoints[0].latitude,data.waypoints[0].longitude));
+			directions.setDestination(L.latLng(data.waypoints[6].latitude,data.waypoints[6].longitude));
+
+			for(i=0;i<data.waypoints.length;i++){
+				directions.addWaypoint(i, L.latLng(data.waypoints[i].latitude,data.waypoints[i].longitude));
+			}
+			
+
+			directions.query();
+
+			var directionsLayer = L.mapbox.directions.layer(directions).addTo(map);
+
+		    var directionsRoutesControl = L.mapbox.directions.routesControl('routes', directions).addTo(map);
+
+		    var directionsErrorsControl = L.mapbox.directions.errorsControl('errors', directions).addTo(map);
+
+
+
+
+
+
+
+
+
+
+	 		/*L.mapbox.directions.layer(directions).addTo(map);*/
 
 	 		
 	 		//L.mapbox.directions.getOrigin();
