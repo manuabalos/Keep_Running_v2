@@ -5,7 +5,7 @@ $(document).ready(function(){
 
    	$(".routes.index").ready(function() {
 
-   		$.ajax({
+   		var rutas = $.ajax({
 	    	type: 'GET',
 	        dataType: 'json',
 	        url: this_url,
@@ -114,6 +114,38 @@ $(document).ready(function(){
 			}).addTo(map);
 			}					
 		}
+
+		// Mostrar en formato tabla
+		$(".btn-mostrar-tabla").on("click", function(){
+			// Borramos el mapa
+			$(".rutas-index").empty();
+			console.log(rutas.responseJSON.route);
+
+			//Añadimos la tabla
+			var tablaRutasIndex = "<div class='table-responsive'><table class='table table-hover'><thead><tr class='tabla-cabecera-index'><th>Ruta</th><th>Dificultad</th><th>Distancia (km.)</th><th>Lugar</th></tr></thead><tbody class='rutas-index-fila'></tbody></table></div>";
+			$(".rutas-index").append(tablaRutasIndex);
+
+				for(i=0;i<rutas.responseJSON.route.length;i++){
+					// Añadimos el contenido de cada fila
+					var rutaNombre = "<tr class='tabla-fila-index' data-href=/routes/"+rutas.responseJSON.route[i].id+"><td><b>"+rutas.responseJSON.route[i].name+"</b></td>"; 
+					var rutaDificultad = "<td>"+rutas.responseJSON.route[i].difficulty+"</td>";
+					var rutaDistancia = "<td>"+rutas.responseJSON.route[i].distance+"</td>";
+					var rutaLugar = "<td>"+rutas.responseJSON.route[i].location+"</td></tr>";
+
+					var filaRuta = rutaNombre+rutaDificultad+rutaDistancia+rutaLugar;
+
+					$(".rutas-index-fila").append(filaRuta);
+					$(".rutas-index-fila").css("text-align","center");
+
+					$(".tabla-fila-index").css("background-color","white");
+					$(".tabla-fila-index").css("cursor","pointer");
+				}
+				
+			$(".tabla-fila-index").on("click", function() {
+	    		window.document.location = $(this).data("href");
+			});
+
+		});
    	});
 
 // Testeando MapBox
