@@ -22,21 +22,21 @@
 					</div>
 					
 					<div class="row" data-no-turbolink>
-						<a href='#' class='btn btn-default btn-mapbox-default'>Principiante</a>
-						<%# link_to "Principiante", filter_difficulty_path(Route, :difficulty => "Principiante"), class: "btn btn-default btn-mapbox-default" %>
+						<a href='#' class='btn btn-default btn-mapbox-default btn-filtrar-dificultad' data-difficulty="Principiante">Principiante</a>
+						<%# link_to "Principiante", filter_routes_path(Route, :difficulty => "Principiante"), class: "btn btn-default btn-mapbox-default" %>
 					</div>
 				
 					<div class="row">
-						<a href='#' class='btn btn-default btn-mapbox-default'>Intermedia</a>
+						<a href='#' class='btn btn-default btn-mapbox-default btn-filtrar-dificultad' data-difficulty="Intermedia">Intermedia</a>
 						<%# link_to "Intermedia", filter_difficulty_path(Route, :difficulty => "Intermedia"), class: "btn btn-default btn-mapbox-default" %>
 					</div>
 					<div class="row">
-						<a href='#' class='btn btn-default btn-mapbox-default'>Dificil</a>
-						<%# link_to "Dificil", filter_difficulty_path(Route, :difficulty => "Dificil"), class: "btn btn-default btn-mapbox-default" %>
+						<a href='#' class='btn btn-default btn-mapbox-default btn-filtrar-dificultad' data-difficulty="Dificil">Dificil</a>
+						<%# link_to "Todos", routes_path, class: "btn btn-default btn-mapbox-default" %>
 					</div>	
 
 					<div class="row">
-						<a href='#' class='btn btn-default btn-mapbox-default'>Todos</a>
+						<%= link_to "Todos", routes_path, class: "btn btn-default btn-mapbox-default" %>
 					</div>
 
 					<div class="row">

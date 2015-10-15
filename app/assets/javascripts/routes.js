@@ -6,12 +6,12 @@ $(document).ready(function(){
    	$(".routes.index").ready(function() {
 
    		var rutas = $.ajax({
-	    	type: 'GET',
-	        dataType: 'json',
-	        url: this_url,
-	        success: function(data) { drawMap(data); },
-	        error: function(data) { console.log("Error ",data); }
-		});
+				    	type: 'GET',
+				        dataType: 'json',
+				        url: this_url,
+				        success: function(data) { drawMap(data); },
+				        error: function(data) { console.log("Error ",data); }
+					});
 
 				
    		function drawMap(data){
@@ -119,7 +119,7 @@ $(document).ready(function(){
 		$(".btn-mostrar-tabla").on("click", function(){
 			// Borramos el mapa
 			$(".rutas-index").empty();
-			console.log(rutas.responseJSON.route);
+			//console.log(rutas.responseJSON.route);
 
 			//Añadimos la tabla
 			var tablaRutasIndex = "<div class='table-responsive'><table class='table'><thead><tr class='tabla-cabecera-index'><th>Ruta</th><th>Dificultad</th><th>Distancia (km.)</th><th>Lugar</th></tr></thead><tbody class='rutas-index-fila'></tbody></table></div>";
@@ -155,6 +155,24 @@ $(document).ready(function(){
 			$(".rutas-index").append("<div id='map'></div>");
 			drawMap(rutas.responseJSON);			
 		});	
+
+		//Mostrar rutas por dificultad
+		$(".btn-filtrar-dificultad").on("click", function(){
+			//Obtenemos la dificultad por la que queremos filtrar
+			paramDificultad = { difficulty: $(this).data("difficulty") };
+
+			$(".rutas-index").empty();
+			$(".rutas-index").append("<div id='map'></div>");
+
+			var rutas = $.ajax({
+					    	type: 'GET',
+					        dataType: 'json',
+					        url: "http://localhost:3000/filter",
+					        data: paramDificultad,
+					        success: function(data) { drawMap(data); },
+					        error: function(data) { console.log("Error ",data); }
+						});
+		});	
    	});
 
 // Testeando MapBox
@@ -172,7 +190,6 @@ $(document).ready(function(){
 
 
 	   function takingRoute(data){
-	   	console.log(data);
 
 	   		var map = L.mapbox.map('map', 'mapbox.streets').setView([data.route.latitude, data.route.longitude], 15);
    			var directions = L.mapbox.directions({

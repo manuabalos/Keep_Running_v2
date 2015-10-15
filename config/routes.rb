@@ -7,5 +7,7 @@ Rails.application.routes.draw do
 	resources :routes do
 		resources :waypoints
 	end
+
+	get '/filter', to: 'routes#filter', as: 'filter_routes'
   
 end

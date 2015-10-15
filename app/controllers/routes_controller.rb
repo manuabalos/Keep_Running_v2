@@ -18,5 +18,14 @@ class RoutesController < ApplicationController
       		format.json { render json: {:route => @route, :waypoints => @waypoints} }
    		end
 	end
+
+	def filter
+		@routes = Route.where("difficulty = ?", params[:difficulty])
+	
+		respond_to do |format|
+			format.html #index.html.erb
+	      	format.json { render json: {:route => @routes } }
+		end
+	end
 	
 end
