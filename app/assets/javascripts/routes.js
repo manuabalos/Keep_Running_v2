@@ -9,69 +9,69 @@ $(document).ready(function(){
 	    	type: 'GET',
 	        dataType: 'json',
 	        url: this_url,
-	        success: function(data) { addMarkers(data); },
+	        success: function(data) { drawMap(data); },
 	        error: function(data) { console.log("Error ",data); }
 		});
 
-		
-		var map = L.mapbox.map('map', 'mapbox.streets').setView([40.087802, -3.873294], 6)
-							.addControl(L.mapbox.geocoderControl('mapbox.places', {
-						        autocomplete: true
-						    }));
-		L.control.fullscreen().addTo(map);	// Opción de pantalla completa
-		L.control.locate().addTo(map); // Localizador de posición				
-		var myLayer = L.mapbox.featureLayer().addTo(map);
+				
+   		function drawMap(data){
+			var map = L.mapbox.map('map', 'mapbox.streets').setView([40.087802, -3.873294], 6)
+						.addControl(L.mapbox.geocoderControl('mapbox.places', {
+					        autocomplete: true
+					    }));
+			L.control.fullscreen().addTo(map);	// Opción de pantalla completa
+			L.control.locate().addTo(map); // Localizador de posición				
+			var myLayer = L.mapbox.featureLayer().addTo(map);
 
-		// This uses the HTML5 geolocation API, which is available on
-		// most mobile browsers and modern browsers, but not in Internet Explorer
-		//
-		// See this chart of compatibility for details:
-		// http://caniuse.com/#feat=geolocation
-		var geolocate = document.getElementById('geolocate');
-		if (!navigator.geolocation) {
-		    geolocate.innerHTML = 'Geolocation is not available';
-		} else {
-		    geolocate.onclick = function (e) {
-		        e.preventDefault();
-		        e.stopPropagation();
-		        map.locate();
-		    };
-		}
+			// This uses the HTML5 geolocation API, which is available on
+			// most mobile browsers and modern browsers, but not in Internet Explorer
+			//
+			// See this chart of compatibility for details:
+			// http://caniuse.com/#feat=geolocation
+			var geolocate = document.getElementById('geolocate');
+			if (!navigator.geolocation) {
+			    geolocate.innerHTML = 'Geolocation is not available';
+			} else {
+			    geolocate.onclick = function (e) {
+			        e.preventDefault();
+			        e.stopPropagation();
+			        map.locate();
+			    };
+			}
 
-		// Once we've got a position, zoom and center the map
-		// on it, and add a single marker.
-		map.on('locationfound', function(e) {
-		    map.fitBounds(e.bounds);
+			// Once we've got a position, zoom and center the map
+			// on it, and add a single marker.
+			map.on('locationfound', function(e) {
+			    map.fitBounds(e.bounds);
 
-		    myLayer.setGeoJSON({
-		        type: 'Feature',
-		        geometry: {
-		            type: 'Point',
-		            coordinates: [e.latlng.lng, e.latlng.lat]
-		        },
-		        properties: {
-		            'title': '¡Aqui estas tú!',
-		            'marker-color': '#ff8888',
-		            'marker-symbol': 'star'
-		        }
-		    });
+			    myLayer.setGeoJSON({
+			        type: 'Feature',
+			        geometry: {
+			            type: 'Point',
+			            coordinates: [e.latlng.lng, e.latlng.lat]
+			        },
+			        properties: {
+			            'title': '¡Aqui estas tú!',
+			            'marker-color': '#ff8888',
+			            'marker-symbol': 'star'
+			        }
+			    });
 
-		});
+			});
 
-		// If the user chooses not to allow their location
-		// to be shared, display an error message.
-		map.on('locationerror', function() {
-		    geolocate.innerHTML = 'Position could not be found';
-		});
+			// If the user chooses not to allow their location
+			// to be shared, display an error message.
+			map.on('locationerror', function() {
+			    geolocate.innerHTML = 'Position could not be found';
+			});
 
-		// When a user selects a marker, center the map on its coordinates.
-		map.featureLayer.on('click', function(e) {
-        	map.panTo(e.layer.getLatLng());
-   		});
+			// When a user selects a marker, center the map on its coordinates.
+			map.featureLayer.on('click', function(e) {
+	        	map.panTo(e.layer.getLatLng());
+	   		});
 
-		// Añadimos los marcadores donde se encuentran las rutas
-		function addMarkers(data){
-			
+
+			// Añadimos los marcadores donde se encuentran las rutas
 			for(i=0;i<data.route.length;i++){
 
 				switch(data.route[i].difficulty) {
@@ -86,32 +86,32 @@ $(document).ready(function(){
 				    	break;
 				}
 
-			L.mapbox.featureLayer({
-				
-				    // this feature is in the GeoJSON format: see geojson.org
-				    // for the full specification
-				    type: 'Feature',
-				    geometry: {
-				        type: 'Point',
-				        // coordinates here are in longitude, latitude order because
-				        // x, y is the standard for GeoJSON and many formats
-				        coordinates: [
-				          data.route[i].longitude,
-				          data.route[i].latitude 
-				        ]
-				    },
-				    properties: {
-				        title: data.route[i].name,
-				        description: data.route[i].description+"<ul><li><b>Dificultad:</b> "+data.route[i].difficulty+"</li><li><b>Distancia total:</b> "+data.route[i].distance+" km.</li></ul><a href='"+this_url+"/"+data.route[i].id+"' id='btn-ver-ruta' class='btn btn-default btn-mapbox-default'>Ver ruta</a>",
-				        url: this_url+data.route[i].id,
-				        // one can customize markers by adding simplestyle properties
-				        // https://www.mapbox.com/guides/an-open-platform/#simplestyle
-				        'marker-size': 'large',
-				        'marker-color': colorIconDifficulty,
-				        'marker-symbol': 'pitch'
-				    }
+				L.mapbox.featureLayer({
+					
+					    // this feature is in the GeoJSON format: see geojson.org
+					    // for the full specification
+					    type: 'Feature',
+					    geometry: {
+					        type: 'Point',
+					        // coordinates here are in longitude, latitude order because
+					        // x, y is the standard for GeoJSON and many formats
+					        coordinates: [
+					          data.route[i].longitude,
+					          data.route[i].latitude 
+					        ]
+					    },
+					    properties: {
+					        title: data.route[i].name,
+					        description: data.route[i].description+"<ul><li><b>Dificultad:</b> "+data.route[i].difficulty+"</li><li><b>Distancia total:</b> "+data.route[i].distance+" km.</li></ul><a href='"+this_url+"/"+data.route[i].id+"' id='btn-ver-ruta' class='btn btn-default btn-mapbox-default'>Ver ruta</a>",
+					        url: this_url+data.route[i].id,
+					        // one can customize markers by adding simplestyle properties
+					        // https://www.mapbox.com/guides/an-open-platform/#simplestyle
+					        'marker-size': 'large',
+					        'marker-color': colorIconDifficulty,
+					        'marker-symbol': 'pitch'
+					    }
 
-			}).addTo(map);
+				}).addTo(map);
 			}					
 		}
 
@@ -122,7 +122,7 @@ $(document).ready(function(){
 			console.log(rutas.responseJSON.route);
 
 			//Añadimos la tabla
-			var tablaRutasIndex = "<div class='table-responsive'><table class='table table-hover'><thead><tr class='tabla-cabecera-index'><th>Ruta</th><th>Dificultad</th><th>Distancia (km.)</th><th>Lugar</th></tr></thead><tbody class='rutas-index-fila'></tbody></table></div>";
+			var tablaRutasIndex = "<div class='table-responsive'><table class='table'><thead><tr class='tabla-cabecera-index'><th>Ruta</th><th>Dificultad</th><th>Distancia (km.)</th><th>Lugar</th></tr></thead><tbody class='rutas-index-fila'></tbody></table></div>";
 			$(".rutas-index").append(tablaRutasIndex);
 
 				for(i=0;i<rutas.responseJSON.route.length;i++){
@@ -140,12 +140,21 @@ $(document).ready(function(){
 					$(".tabla-fila-index").css("background-color","white");
 					$(".tabla-fila-index").css("cursor","pointer");
 				}
-				
+
 			$(".tabla-fila-index").on("click", function() {
 	    		window.document.location = $(this).data("href");
 			});
 
 		});
+
+		//Mostrar en formato mapa
+		$(".btn-mostrar-mapa").on("click", function(){
+			// Borramos la tabla
+			$(".rutas-index").empty();
+			//Añadimos el contenedor del mapa
+			$(".rutas-index").append("<div id='map'></div>");
+			drawMap(rutas.responseJSON);			
+		});	
    	});
 
 // Testeando MapBox
