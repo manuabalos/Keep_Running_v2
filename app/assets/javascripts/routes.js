@@ -20,7 +20,8 @@ $(document).ready(function(){
 					        autocomplete: true
 					    }));
 			L.control.fullscreen().addTo(map);	// Opción de pantalla completa
-			L.control.locate().addTo(map); // Localizador de posición				
+			L.control.locate().addTo(map); // Localizador de posición	
+
 			var myLayer = L.mapbox.featureLayer().addTo(map);
 
 			// This uses the HTML5 geolocation API, which is available on
@@ -42,6 +43,8 @@ $(document).ready(function(){
 			// Once we've got a position, zoom and center the map
 			// on it, and add a single marker.
 			map.on('locationfound', function(e) {
+				 console.log("Longitud ---> " + e.latlng.lng);
+			    console.log("Latitud ---> " + e.latlng.lat);
 			    map.fitBounds(e.bounds);
 
 			    myLayer.setGeoJSON({
@@ -173,6 +176,36 @@ $(document).ready(function(){
 					        error: function(data) { console.log("Error ",data); }
 						});
 		});	
+
+		//Filtramos las rutas por distancia
+		$(".btn-filtrar-distancia").on("click", function(){
+			console.log("Distancia -> " + $(this).data("distance"));
+			$(".rutas-index").empty();
+			$(".rutas-index").append("<div id='map'></div>");
+
+			var map = L.mapbox.map('map', 'mapbox.streets').setView([40.087802, -3.873294], 6)
+						.addControl(L.mapbox.geocoderControl('mapbox.places', {
+					        autocomplete: true
+					    }));
+			L.control.fullscreen().addTo(map);	// Opción de pantalla completa
+			L.control.locate().addTo(map); // Localizador de posición	
+
+			var myLayer = L.mapbox.featureLayer().addTo(map);
+    
+			if (!navigator.geolocation) {
+			    geolocate.innerHTML = 'Geolocation is not available';
+			} else {
+			       map.locate();
+			}
+
+			// Obtenemos las coordenadas de la posición del usuario
+			map.on('locationfound', function(e) {
+				console.log("Longitud ---> " + e.latlng.lng);
+			    console.log("Latitud ---> " + e.latlng.lat);
+			});
+
+		});
+
    	});
 
 // Testeando MapBox
