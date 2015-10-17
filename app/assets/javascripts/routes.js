@@ -15,14 +15,15 @@ $(document).ready(function(){
 
 				
    		function drawMap(data){
-			var map = L.mapbox.map('map', 'mapbox.streets').setView([40.087802, -3.873294], 6)
+   			console.log(data);
+			map = L.mapbox.map('map', 'mapbox.streets').setView([40.087802, -3.873294], 6)
 						.addControl(L.mapbox.geocoderControl('mapbox.places', {
 					        autocomplete: true
 					    }));
 			L.control.fullscreen().addTo(map);	// Opción de pantalla completa
 			L.control.locate().addTo(map); // Localizador de posición	
 
-			var myLayer = L.mapbox.featureLayer().addTo(map);
+			myLayer = L.mapbox.featureLayer().addTo(map);
 
 			// This uses the HTML5 geolocation API, which is available on
 			// most mobile browsers and modern browsers, but not in Internet Explorer
@@ -43,10 +44,8 @@ $(document).ready(function(){
 			// Once we've got a position, zoom and center the map
 			// on it, and add a single marker.
 			map.on('locationfound', function(e) {
-				 console.log("Longitud ---> " + e.latlng.lng);
-			    console.log("Latitud ---> " + e.latlng.lat);
-			    map.fitBounds(e.bounds);
 
+			    map.fitBounds(e.bounds);
 			    myLayer.setGeoJSON({
 			        type: 'Feature',
 			        geometry: {
@@ -124,7 +123,7 @@ $(document).ready(function(){
 			$(".rutas-index").empty();
 			//console.log(rutas.responseJSON.route);
 
-			//Añadimos la tabla
+			// Añadimos la tabla
 			var tablaRutasIndex = "<div class='table-responsive'><table class='table'><thead><tr class='tabla-cabecera-index'><th>Ruta</th><th>Dificultad</th><th>Distancia (km.)</th><th>Lugar</th></tr></thead><tbody class='rutas-index-fila'></tbody></table></div>";
 			$(".rutas-index").append(tablaRutasIndex);
 
@@ -150,18 +149,18 @@ $(document).ready(function(){
 
 		});
 
-		//Mostrar en formato mapa
+		// Mostrar en formato mapa
 		$(".btn-mostrar-mapa").on("click", function(){
 			// Borramos la tabla
 			$(".rutas-index").empty();
-			//Añadimos el contenedor del mapa
+			// Añadimos el contenedor del mapa
 			$(".rutas-index").append("<div id='map'></div>");
 			drawMap(rutas.responseJSON);			
 		});	
 
-		//Mostrar rutas por dificultad
+		// Mostrar rutas por dificultad
 		$(".btn-filtrar-dificultad").on("click", function(){
-			//Obtenemos la dificultad por la que queremos filtrar
+			// Obtenemos la dificultad por la que queremos filtrar
 			paramDificultad = { difficulty: $(this).data("difficulty") };
 
 			$(".rutas-index").empty();
@@ -177,41 +176,68 @@ $(document).ready(function(){
 						});
 		});	
 
-		//Filtramos las rutas por distancia
+		// Filtramos las rutas por distancia
 		$(".btn-filtrar-distancia").on("click", function(){
-			console.log("Distancia -> " + $(this).data("distance"));
+			var filtDistancia = $(this).data("distance");
+			var getFilterRoutes = {route: []};
+
 			$(".rutas-index").empty();
 			$(".rutas-index").append("<div id='map'></div>");
-
-			var map = L.mapbox.map('map', 'mapbox.streets').setView([40.087802, -3.873294], 6)
-						.addControl(L.mapbox.geocoderControl('mapbox.places', {
-					        autocomplete: true
-					    }));
-			L.control.fullscreen().addTo(map);	// Opción de pantalla completa
-			L.control.locate().addTo(map); // Localizador de posición	
-
-			var myLayer = L.mapbox.featureLayer().addTo(map);
     
 			if (!navigator.geolocation) {
 			    geolocate.innerHTML = 'Geolocation is not available';
 			} else {
-			       map.locate();
+				 	
+			        map.locate();
+					map.on('locationfound', function(e) {
+						// Obtenemos las coordenadas de la posición del usuario
+						var usu = L.latLng(e.latlng.lat, e.latlng.lng);
+
+						for(i=0; i<rutas.responseJSON.route.length; i++){
+							// Obtenemos las coordenadas de la ruta
+							var ruta = L.latLng(rutas.responseJSON.route[i].latitude, rutas.responseJSON.route[i].longitude);
+
+							// Calculamos la distancia entre la ruta y el usuario
+							distancia = (usu.distanceTo(ruta)).toFixed(0);
+							
+							if(parseInt(distancia) <= parseInt(filtDistancia)){
+								getFilterRoutes["route"].push(rutas.responseJSON.route[i]);
+							}
+						}
+						console.log(getFilterRoutes);
+						$(".rutas-index").empty();
+						$(".rutas-index").append("<div id='map'></div>");
+						drawMap(getFilterRoutes);
+						map._layersMaxZoom = 13; // Ajustamos el zoom
+
+						// Redirigimos el zoom a la posición del usuario
+						map.fitBounds(e.bounds);
+
+					    myLayer.setGeoJSON({
+					        type: 'Feature',
+					        geometry: {
+					            type: 'Point',
+					            coordinates: [e.latlng.lng, e.latlng.lat]
+					        },
+					        properties: {
+					            'title': '¡Aquí estas!',
+					            'marker-color': '#ff8888',
+					            'marker-symbol': 'star'
+					        }
+					    });
+					    // Abrir por defecto el pop-up del usuario
+					    myLayer.eachLayer(function(m) {
+						  m.openPopup();
+						});
+					});	
 			}
 
-			// Obtenemos las coordenadas de la posición del usuario
-			map.on('locationfound', function(e) {
-				console.log("Longitud ---> " + e.latlng.lng);
-			    console.log("Latitud ---> " + e.latlng.lat);
-			});
+			
 
 		});
 
    	});
 
-// Testeando MapBox
-// Objetivo: Mostrar la ruta exacta de cada recorrido
-// Problema : Mapbox aun no tiene implementada la funcionalidad de dibujar una ruta usando distintos
-// puntos de coordenadas.
 	$(".routes.show").ready(function() {
   		
 		$.ajax({
@@ -220,7 +246,6 @@ $(document).ready(function(){
 	        url: this_url,
 	        success: function(data) { takingRoute(data); }
 	   	});    	
-
 
 	   function takingRoute(data){
 
