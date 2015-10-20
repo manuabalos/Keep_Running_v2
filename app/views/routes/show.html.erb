@@ -5,6 +5,12 @@
 			<center><h1> <%= @route.name %> </h1></center>
 				<div class="col-md-2">
 
+					<div class="row route-info-panel">
+						<p><u>Lugar:</u> <b><%= @route.location %></b></p>
+						<p><u>Dificultad:</u> <b><%= @route.difficulty %></b></p>
+						<p><u>Distancia (km):</u> <b>10km.</b></p>
+					</div>
+
 					<div class="row">
 						<a href='#' class='btn btn-default btn-mapbox-default'>Mostrar recorrido</a>
 					</div>
@@ -13,6 +19,10 @@
 					</div>
 					<div class="row">
 						<a href='#' class='btn btn-default btn-mapbox-default'>Tiempo</a>
+					</div>
+
+					<div class="row">
+						<a href='#' class='btn btn-default btn-mapbox-default'>Añadir historial</a>
 					</div>
 
 				</div>

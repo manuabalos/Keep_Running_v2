@@ -244,10 +244,10 @@ $(document).ready(function(){
 	        type: 'GET',
 	        dataType: 'json',
 	        url: this_url,
-	        success: function(data) { takingRoute(data); }
+	        success: function(data) { drawRoute(data); }
 	   	});    	
 
-	   function takingRoute(data){
+	   function drawRoute(data){
 
 	   		var map = L.mapbox.map('map', 'mapbox.streets').setView([data.route.latitude, data.route.longitude], 15);
    			var directions = L.mapbox.directions({
