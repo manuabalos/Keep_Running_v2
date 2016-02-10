@@ -14,7 +14,7 @@ La finalidad es mejorar dicha aplicación arreglando los bugs que tenia la anter
 - Estadísticas de usuarios.
 - Interactuar con runners.
 
-Things you may want to cover:
+== INFORMACIÓN
 
  * Ruby 2.2.1
  * Ruby on Rails 4.2.3
